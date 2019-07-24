@@ -22,35 +22,29 @@ export class CuentaService {
   public agregarTotal(id,cant){
     return this.http.put("http://167.71.202.42/api/cuentas/"+id+"/agregar/"+cant,null);
   }
+
+  public restarTotal(id,cant){
+    return this.http.put("http://167.71.202.42/api/cuentas/"+id+"/restar/"+cant,null);
+  }
+
+  public consultaMovimiento(id){
+    return this.http.get("http://167.71.202.42/api/cuentas/"+id+"/movimientos");
+  }
+
+  public consultaCategorias(id){
+    return this.http.get("http://167.71.202.42/api/cuentas/"+id);
+  }
+
+  public crearCategoria(id,nom,cant){
+    return this.http.put("http://167.71.202.42/api/cuentas/"+id+"/categorias/crear/"+nom+cant,null);
+  }
+
   
 
 
-/* 
-////////////////////total
-
-    
-    //se manda en el url la cantidad a agregar al total y en cuerpo se le manda desc(descripcion del movimiento)
-    router.put('/:userId/agregar/:cant', (req, res) =>
-    cuentaCtrl.agregarTotal(req, res));
-
-    //se manda en el url la cantidad a restar al total y en cuerpo se le manda desc(descripcion del movimiento)
-    router.put('/:userId/restar/:cant', (req, res) =>
-    cuentaCtrl.restartTotal(req, res));
-    
-    //se consultan todos los movimientos en TOTAL
-    router.get('/:userId/movimientos', (req, res) =>
-    cuentaCtrl.consultarTotalMov(req, res));
-    
-    
+/*  
     ////////////////////categorias
 
-    //obtener todas las categorias con su saldo
-    router.get('/:userId', (req, res) =>
-    cuentaCtrl.catGet(req, res));
-
-    //se manda en la url el nombre de la categoria a crea y despues el saldo a asignar
-    router.put('/:userId/categorias/crear/:nom/:saldo', (req, res) =>
-    cuentaCtrl.crearCategoria(req, res));
 
     //en la url se manda el parametro del nombre de la categoria a eliminar
     router.put('/:userId/categorias/eliminar/:nom', (req, res) =>
