@@ -15,7 +15,7 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
   //todas las rutas de usuario
-  
+
   public crearUsuario(usuario) {
     return this.http.post("http://167.71.202.42/api/usuarios",usuario);
   } 
