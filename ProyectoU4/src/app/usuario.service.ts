@@ -10,21 +10,25 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class UsuarioService {
 
   constructor(private http: HttpClient) { }
   //todas las rutas de usuario
   
- /*  public crearUsuario(usuario) {
-    return this.http.put("http://167.71.202.42/");
-  } */
-  /* router.post('/', (req, res) => UsuarioCtrl.createUser(req, res));
+  public crearUsuario(usuario) {
+    return this.http.post("http://167.71.202.42/api/usuarios",usuario);
+  } 
 
-          
-  router.get('/', (req, res) => UsuarioCtrl.findAll(req, res));
+  public loginUs(email,password)
+  {
+    return this.http.get("http://167.71.202.42/api/usuarios/login/"+email+"/"+password+"");
+  } 
 
-  router.get('/login/:email/:password', (req, res) =>UsuarioCtrl.login(req, res));
-
+  public findById(id){
+    return this.http.get("http://167.71.202.42/api/usuarios/"+id);
+  }
+  /* 
 
   router.put('/:id', (req, res) => UsuarioCtrl.Actualizar(req, res));
 
