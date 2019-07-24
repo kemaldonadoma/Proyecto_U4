@@ -42,7 +42,7 @@ export class CuentaService {
   //consulta todas las categorias por el id de la cuenta
 
   public consultaCategorias(id){
-    return this.http.get("http://167.71.202.42/api/cuentas/"+id);
+    return this.http.get("http://167.71.202.42/api/cuentas/"+id,httpOptions);
   }
 
   //crea categoria con un saldo inicial
