@@ -9,7 +9,7 @@ import { CategoriaDetailsComponent } from './categoria-details/categoria-details
 import { CategoriaCrearComponent } from './categoria-crear/categoria-crear.component';
 const routes: Routes = [
 //
-{path:'login', component:LoginComponent},
+{path:'', component:LoginComponent},
 {path:'crear-usuario', component:CrearUsuarioComponent},
 {path:':id', component:PrincipalComponent},
 {path:':id/movimientos-total', component:MovimientosTotalComponent},
