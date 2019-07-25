@@ -5,59 +5,19 @@
     <div class="col" aling = "center">
           
 
-          <table class="table">
-                <thead >
-                  <tr class="bg-primary">
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-          </div>
-
-        
 
 
-</div>
-
-<div class="form-footer">
-        <button type="submit" class="btn btn-info">
-        <span class="glyphicon glyphicon-log-in"></span> Regresar </button>
-   </div>
-
-
-   <div class="list-group" style="overflow-y:scroll;">
-    <div  *ngFor="let mov of movimientos-total" >
+        <div class="list-group" style="overflow-y:scroll; height:15em">
+            <div  *ngFor="let mov of movimiento;" >
        <ul class="list-group list-group-horizontal-sm text-primary">
            <li class="list-group-item"> {{mov.fecha}}</li>
            <li class="list-group-item"> {{mov.cantidad}}</li>
            <li class="list-group-item">   {{mov.desc}}</li>
        </ul>
     </div>
-
+   </div>
    
-   
+    <div class="form-footer">
+        <button type="submit" class="btn btn-info">
+        <span class="glyphicon glyphicon-log-in"></span> Regresar </button>
+   </div>

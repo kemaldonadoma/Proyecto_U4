@@ -17,6 +17,7 @@ export class CategoriaDetailsComponent implements OnInit {
   movimiento;
   nombre;
   saldo;
+  nombreCat;
 
   //movimiento = [{},{},{}];
   constructor(private formBuilder: FormBuilder, private router:Router, private cuentaService: CuentaService, 
@@ -27,6 +28,7 @@ export class CategoriaDetailsComponent implements OnInit {
         this.cuentaService.consultaMovCat(params.get('id'),params.get('nom')).subscribe(
           (mov_resultados)=>{
             this.saldo = mov_resultados.movimientos.categorias[0].saldo;
+            this.nombreCat = mov_resultados.movimientos.categorias[0].nombre;
             console.log(this.saldo);
             console.log(mov_resultados);
             console.log(params.get('id'),params.get('nom'));
