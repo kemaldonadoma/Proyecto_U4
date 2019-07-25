@@ -1,23 +1,40 @@
-<p>movimientos-total works!</p>
 
+<h1 class="display-1 text-center"> Movimientos total</h1>
 
 <div class="row m-5"  aling = "center"  >
     <div class="col" aling = "center">
           
+        <table class="table ">
+            <thead class="thead-inverse">
+            
+                <tr class="table-primary">
+                <th>Fecha</th>
+                <th>Cantidad</th>
+                <th>Descripcion </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let mov of movimiento;" >
+                <td>  {{mov.fecha | date:'MMMM - dd'}} </td>
+                <td>  {{mov.cantidad | currency}}  </td>
+                <td>   {{mov.desc}} </td>
+              </tr>
+</tbody>
 
 
-
-        <div class="list-group" style="overflow-y:scroll; height:15em">
-            <div  *ngFor="let mov of movimiento;" >
+        </table>    
+        <!-- 
+        <div class="list-group" style="overflow-y:scroll; height:10em">
+            <div  *ngFor="let mov of movimiento;" ></div>
        <ul class="list-group list-group-horizontal-sm text-primary">
-           <li class="list-group-item"> {{mov.fecha}}</li>
+           <li class="list-group-item"> {{mov.fecha| date:'MMMM - dd'}}</li>
            <li class="list-group-item"> {{mov.cantidad}}</li>
            <li class="list-group-item">   {{mov.desc}}</li>
        </ul>
     </div>
    </div>
-   
-    <div class="form-footer">
-        <button type="submit" class="btn btn-info">
-        <span class="glyphicon glyphicon-log-in"></span> Regresar </button>
-   </div>
+   --> 
+   <div class="row" >
+    
+    <button (click)="regresar()" class="btn btn-secondary btn-block  " >Regresar</button>
+</div>
