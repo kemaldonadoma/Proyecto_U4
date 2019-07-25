@@ -23,14 +23,14 @@ export class CuentaService {
 
   //agrega al total de la cuenta
 
-  public agregarTotal(id,cant){
-    return this.http.put("http://167.71.202.42/api/cuentas/"+id+"/agregar/"+cant,null);
+  public agregarTotal(id,cant,des){
+    return this.http.put("http://167.71.202.42/api/cuentas/"+id+"/agregar/"+cant,des);
   }
 
   //resta al total de la cuenta
 
-  public restarTotal(id,cant){
-    return this.http.put("http://167.71.202.42/api/cuentas/"+id+"/restar/"+cant,null);
+  public restarTotal(id,cant,des){
+    return this.http.put("http://167.71.202.42/api/cuentas/"+id+"/restar/"+cant,des);
   }
 
   //consulta movimientos de total

@@ -11,8 +11,14 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class PrincipalComponent implements OnInit {
   cuenta;
+
+  formTotal;
+  public tip = 1;
+
   constructor( private apiCuenta:CuentaService,private router: ActivatedRoute,private apiUser:UsuarioService,private formBuilder:FormBuilder) {
    
+    this.createForm();
+
     this.router.paramMap.subscribe(
       (params)=>{
         this.apiCuenta.consultaCategorias(params.get('id')).subscribe(
@@ -31,11 +37,6 @@ export class PrincipalComponent implements OnInit {
       },
       ()=>{}
     );
-
-    //
-    
-
-
    }
 
   asigCat(cat){
@@ -44,5 +45,60 @@ export class PrincipalComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  load(){
+    location.reload();
+  }
+
+createForm(){
+    this.formTotal = this.formBuilder.group({
+      monto:[''],
+      agregar:[''],
+      description:['']
+    });
+  }
+
+  guardarMovimiento(movimientoToSave) {
+    console.log(movimientoToSave);
+    this.router.params.subscribe(
+
+      (params) => {
+        if(this.tip == 1 ){
+          this.apiCuenta.agregarTotal(params.id,movimientoToSave.monto,{desc:movimientoToSave.description}).subscribe(
+            (a) =>{
+              console.log("se agrego correctamente a total");
+              this.load();
+            },
+            (b) => {
+              console.log("algo salio mal en agregar");
+            }
+          )
+    
+        }else{
+          this.apiCuenta.restarTotal(params.id,movimientoToSave.monto,{desc:movimientoToSave.description}).subscribe(
+            (a) =>{
+              console.log("se resto correctamente a total");
+              this.load();
+            },
+            (b) => {
+              console.log("algo salio mal en insertar");
+            }
+          )
+    
+        }
+      },
+      (err) => {
+
+      }
+
+    )
+
+  }
+
+  tipo(num){
+    this.tip = num;
+    console.log(this.tip);
+  }
+
 
 }
