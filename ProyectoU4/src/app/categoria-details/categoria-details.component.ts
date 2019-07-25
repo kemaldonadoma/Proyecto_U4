@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import {Router , ActivatedRoute} from '@angular/router';
 import { CuentaService } from '../cuenta.service';
+import { UsuarioService } from '../usuario.service';
 
 
 @Component({
@@ -14,13 +15,19 @@ export class CategoriaDetailsComponent implements OnInit {
   formCategoria;
   public tip = 1;
   movimiento;
+  nombre;
+  saldo;
 
-  constructor(private formBuilder: FormBuilder, private router:Router, private cuentaService: CuentaService, private activaroute: ActivatedRoute) {
+  //movimiento = [{},{},{}];
+  constructor(private formBuilder: FormBuilder, private router:Router, private cuentaService: CuentaService, 
+    private activaroute: ActivatedRoute, private usuarioService: UsuarioService) {
 
     this.activaroute.paramMap.subscribe(
       (params)=>{
         this.cuentaService.consultaMovCat(params.get('id'),params.get('nom')).subscribe(
           (mov_resultados)=>{
+            this.saldo = mov_resultados.movimientos.categorias[0].saldo;
+            console.log(this.saldo);
             console.log(mov_resultados);
             console.log(params.get('id'),params.get('nom'));
             this.asigMov(mov_resultados);
@@ -30,6 +37,23 @@ export class CategoriaDetailsComponent implements OnInit {
           (err)=>{
             console.log(err);
             this.movimiento =err;
+          }
+        )
+      },
+      ()=>{
+
+      }
+
+    );
+    this.activaroute.paramMap.subscribe(
+      (params)=>{
+        this.usuarioService.findById(params.get('id')).subscribe(
+          (usr_resultados)=>{
+            this.nombre = usr_resultados.data.nombre;
+          },
+          (err)=>{
+            console.log(err);
+            this.nombre =err;
           }
         )
       },
@@ -112,6 +136,7 @@ export class CategoriaDetailsComponent implements OnInit {
   asigMov(mov){
     this.movimiento = mov.movimientos.categorias[0].movimientos;
   }
+
   eliminar(){
     this.activaroute.params.subscribe(
       (params)=>{
