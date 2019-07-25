@@ -112,9 +112,23 @@ export class CategoriaDetailsComponent implements OnInit {
   asigMov(mov){
     this.movimiento = mov.movimientos.categorias[0].movimientos;
   }
-  eliminar(id,nom){
-    /* this.cuentaService.eliminarCategoria() */
+  eliminar(){
+    this.activaroute.params.subscribe(
+      (params)=>{
+        this.cuentaService.eliminarCategoria(params.id,params.nom).subscribe(
+          (a)=>{
+            console.log("se elimino correctamente");
+            this.router.navigate(['',params.id]);
+          },
+          (b)=>{
+            console.log("hay un error");
+          }
+        )
 
+      },
+      ()=>{
+      }
+    )
   }
 
   ngOnInit() {
