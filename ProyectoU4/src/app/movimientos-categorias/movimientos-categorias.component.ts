@@ -21,14 +21,30 @@ export class MovimientosCategoriasComponent implements OnInit {
         this.cuentaservice
         .consultaMovimiento(params.get('id'))
         .subscribe((result)=>{
-      this.categorias = result["movimientos"];
-    },
+          console.log(result);
+          console.log(params.get('id'));
+          this.categorias = [result];
+          console.log("Successful");
+          console.log(this.categorias);
+        },
      (err)=>{ 
        console.log(err); 
        this.categorias = [];
       });
 
     });
+  }
+
+  refresh(){
+    this.activatedRoute.params.subscribe(
+      (params)=>{
+        this.router.navigate(['/',params.id,'movimientos-categoria'])
+      },
+      (e)=>{
+
+      }
+
+    )
   }
 
   back(){
@@ -40,6 +56,10 @@ export class MovimientosCategoriasComponent implements OnInit {
 
       }
     )
+  }
+
+  load(){
+    location.reload();
   }
 
   ngOnInit() { }
