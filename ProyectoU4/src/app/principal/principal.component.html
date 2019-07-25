@@ -5,16 +5,19 @@
 
             <!-- cabecera -->
             <div class= "container text-white  bg-primary  py-3">
-                <div class="row">
+                <div class="row  py-2">
                     <h6 class="col-4 offset-1">Bienvenido {{usuario}}</h6>
+                    <button [routerLink]="['movimientos-total']" type="button" class="col-3 offset-3 btn btn-warning py-2">Movimientos Total</button>
                 </div>
                 <div class="row">
                     <h6 class="col-4 offset-1">Tu saldo es: {{total|currency}}</h6>
+                    <button [routerLink]="['movimientos-categoria']" type="button" class="col-3 offset-3 btn btn-warning">Movimientos categorias</button>
                 </div>
             </div>
 
             <!-- Lista de categorias -->
             <div class="container bg-warning text-white py-2">
+
                    <h6>CATEGORIAS</h6> 
                    <div class="list-group" style="overflow-y:scroll; height:25em">
                         <div  *ngFor="let cat of cuenta;" >
@@ -23,6 +26,7 @@
                             </a>
                         </div>
                     </div>
+
             </div>
 
            
