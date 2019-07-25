@@ -1,18 +1,13 @@
 <p>movimientos-total works!</p>
+
+
 <div class="row m-5"  aling = "center"  >
     <div class="col" aling = "center">
-
-        <ol *ngFor="let cuenta of cuentas">
-            <li>Movimientos Total  1</li>
-            <li>Movimiento 1</li>
-            <li>Movimiento 2 </li>
-          </ol>
-
           
 
           <table class="table">
-                <thead class="thead-dark">
-                  <tr>
+                <thead >
+                  <tr class="bg-primary">
                     <th scope="col">#</th>
                     <th scope="col">First</th>
                     <th scope="col">Last</th>
@@ -41,41 +36,27 @@
                 </tbody>
               </table>
               
-              <table class="table">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
+              
           </div>
 
         
 
 
 </div>
-<div  aling = "center" ><input type="button" onclick="history.back();" value="Regresar">
-</div>
+
+<div class="form-footer">
+        <button type="submit" class="btn btn-info">
+        <span class="glyphicon glyphicon-log-in"></span> Regresar </button>
+   </div>
+
+
+   <div class="list-group" style="overflow-y:scroll;">
+    <div  *ngFor="let mov of movimientos-total" >
+       <ul class="list-group list-group-horizontal-sm text-primary">
+           <li class="list-group-item"> {{mov.fecha}}</li>
+           <li class="list-group-item"> {{mov.cantidad}}</li>
+           <li class="list-group-item">   {{mov.desc}}</li>
+       </ul>
+    </div>
+
+   
