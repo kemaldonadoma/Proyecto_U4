@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import {Router , ActivatedRoute} from '@angular/router';
 import { CuentaService } from '../cuenta.service';
+import { UsuarioService } from '../usuario.service';
 
 
 @Component({
@@ -14,13 +15,21 @@ export class CategoriaDetailsComponent implements OnInit {
   formCategoria;
   public tip = 1;
   movimiento;
+  nombre;
+  saldo;
+  nombreCat;
 
-  constructor(private formBuilder: FormBuilder, private router:Router, private cuentaService: CuentaService, private activaroute: ActivatedRoute) {
+  //movimiento = [{},{},{}];
+  constructor(private formBuilder: FormBuilder, private router:Router, private cuentaService: CuentaService, 
+    private activaroute: ActivatedRoute, private usuarioService: UsuarioService) {
 
     this.activaroute.paramMap.subscribe(
       (params)=>{
         this.cuentaService.consultaMovCat(params.get('id'),params.get('nom')).subscribe(
           (mov_resultados)=>{
+            this.saldo = mov_resultados.movimientos.categorias[0].saldo;
+            this.nombreCat = mov_resultados.movimientos.categorias[0].nombre;
+            console.log(this.saldo);
             console.log(mov_resultados);
             console.log(params.get('id'),params.get('nom'));
             this.asigMov(mov_resultados);
@@ -30,6 +39,23 @@ export class CategoriaDetailsComponent implements OnInit {
           (err)=>{
             console.log(err);
             this.movimiento =err;
+          }
+        )
+      },
+      ()=>{
+
+      }
+
+    );
+    this.activaroute.paramMap.subscribe(
+      (params)=>{
+        this.usuarioService.findById(params.get('id')).subscribe(
+          (usr_resultados)=>{
+            this.nombre = usr_resultados.data.nombre;
+          },
+          (err)=>{
+            console.log(err);
+            this.nombre =err;
           }
         )
       },
@@ -70,7 +96,7 @@ export class CategoriaDetailsComponent implements OnInit {
           )
     
         }else{
-          this.cuentaService.restarACategoria(movimientoToSave.description,params.id,params.nom,movimientoToSave.monto).subscribe(
+          this.cuentaService.restarACategoria({desc:movimientoToSave.description},params.id,params.nom,movimientoToSave.monto).subscribe(
             (a) =>{
               console.log("se resto correctamente");
               this.load();
@@ -112,9 +138,24 @@ export class CategoriaDetailsComponent implements OnInit {
   asigMov(mov){
     this.movimiento = mov.movimientos.categorias[0].movimientos;
   }
-  eliminar(id,nom){
-    /* this.cuentaService.eliminarCategoria() */
 
+  eliminar(){
+    this.activaroute.params.subscribe(
+      (params)=>{
+        this.cuentaService.eliminarCategoria(params.id,params.nom).subscribe(
+          (a)=>{
+            console.log("se elimino correctamente");
+            this.router.navigate(['',params.id]);
+          },
+          (b)=>{
+            console.log("hay un error");
+          }
+        )
+
+      },
+      ()=>{
+      }
+    )
   }
 
   ngOnInit() {

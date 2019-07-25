@@ -7,11 +7,11 @@
             <div class= "container text-white  bg-primary  py-3">
                 <div class="row">
                     <h6 class="col-3 offset-1">Bienvenido</h6>
-                    <h6 class="col-3 offset-1">Roberto</h6>
-                    <button (click)="eliminar(1,2)" class="btn btn-secondary btn-block col-2 offset-1" >Eliminar</button>
+                    <h6 class="col-3 offset-1">{{nombre}}</h6>
+                    <button (click)="eliminar()" class="btn btn-secondary btn-block col-2 offset-1" >Eliminar</button>
                 </div>
                 <div class="row">
-                    <h6 class="col-4 offset-1">Tu saldo de la categoria es:</h6>
+                    <h6 class="col-4 offset-1">Tu saldo de la categoria {{nombreCat}} es: {{saldo}}</h6>
                 </div>
             </div>
 
@@ -21,8 +21,8 @@
                 <div class="list-group" style="overflow-y:scroll; height:25em">
                      <div  *ngFor="let mov of movimiento;" >
                         <ul class="list-group list-group-horizontal-sm text-primary">
-                            <li class="list-group-item"> {{mov.fecha}}</li>
-                            <li class="list-group-item"> {{mov.cantidad}}</li>
+                            <li class="list-group-item"> {{mov.fecha | date:'MMMM - dd' }}</li>
+                            <li class="list-group-item"> {{mov.cantidad| currency}}</li>
                             <li class="list-group-item">   {{mov.desc}}</li>
                         </ul>
                      </div>

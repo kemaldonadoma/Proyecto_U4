@@ -1,4 +1,4 @@
-
+import { UsuarioService } from "../usuario.service";
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
@@ -19,11 +19,15 @@ export class MovimientosTotalComponent implements OnInit {
 
 
   formCategoria;
-  public tip = 1;
-  movimiento;
 
-
-  constructor( private router:Router, private cuentaService: CuentaService, private activaroute: ActivatedRoute) {
+  movimiento = [];
+  total;
+  usuario;
+nombre; 
+  constructor( private router:Router, 
+    private cuentaService: CuentaService, 
+    private activaroute: ActivatedRoute,
+    private apiUser:UsuarioService) {
 
     this.activaroute.paramMap.subscribe(
       (params)=>{
@@ -31,19 +35,38 @@ export class MovimientosTotalComponent implements OnInit {
           (mov_resultados)=>{
             console.log(mov_resultados);
             console.log(params.get('id'));
-           
-            console.log("exito");
+           // this.movimiento=[mov_resultados];
+           this.asigMov(mov_resultados);
+           this.asigNom(mov_resultados);
+           console.log("exito");
             console.log(this.movimiento);
           },
           (err)=>{
             console.log(err);
             this.movimiento =err;
           }
+          
         )
+        
       }
 
     );
-
+  /*  this.router.paramMap.subscribe(
+      (params)=>{
+        this.apiUser.findById(params.get('id')).subscribe(
+          (cat_result)=>{
+            this.asigNom(cat_result);
+          },
+          (err)=>{
+            console.log(err);
+            this.nombre = err;
+          }
+        );
+        
+      },
+      ()=>{}
+    );
+*/
    
   
 
@@ -54,7 +77,13 @@ export class MovimientosTotalComponent implements OnInit {
 
   
 
+   asigMov(mov){
+    this.movimiento = mov.movimientos;
+  }
 
+  asigNom(us){
+    this.usuario = us.data.nombre;
+  }
   refresh(){
     this.activaroute.params.subscribe(
       (params)=>{
@@ -82,9 +111,7 @@ export class MovimientosTotalComponent implements OnInit {
   load(){
     location.reload();
   }
-  asigMov(mov){
-    this.movimiento = mov.movimientos.categorias[0].movimientos;
-  }
+
    ngOnInit() {
   }
 }

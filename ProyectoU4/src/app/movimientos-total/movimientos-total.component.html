@@ -1,63 +1,58 @@
-<p>movimientos-total works!</p>
 
-
-<div class="row m-5"  aling = "center"  >
-    <div class="col" aling = "center">
+<h1 class="display-1 text-center"> Movimientos total</h1>
+          <!-- cabecera -->
+          <div class= "container text-white  bg-primary  py-3 ">
+                <div class="row">
+                    <h6 class="col-4 offset-1">Bienvenido {{usuario}}</h6>
+                </div>
+                <div class="row">
+                    <h6 class="col-4 offset-1">Tu saldo es: {{total|currency}}</h6>
+                
+<div class="row m-5 container text-white  bg-primary  py-3 "  aling = "center"  >
+    <div class="col container bg-warning text-white py-2" aling = "center">
           
+        <table class="table ">
+            <thead class="thead-light">
+            
+                <tr class="table-primary">
+                <th>Fecha</th>
+                <th>Cantidad</th>
+                <th>Descripcion </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let mov of movimiento;" >
+                <td>  {{mov.fecha | date:'MMMM - dd'}} </td>
+                <td>  {{mov.cantidad | currency}}  </td>
+                <td>   {{mov.desc}} </td>
+              </tr>
+</tbody>
 
-          <table class="table">
-                <thead >
-                  <tr class="bg-primary">
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-          </div>
 
+        </table>  
         
-
-
+    </div> 
+</div> 
 </div>
-
-<div class="form-footer">
-        <button type="submit" class="btn btn-info">
-        <span class="glyphicon glyphicon-log-in"></span> Regresar </button>
-   </div>
-
-
-   <div class="list-group" style="overflow-y:scroll;">
-    <div  *ngFor="let mov of movimientos-total" >
+</div>
+        <!-- 
+        <div class="list-group" style="overflow-y:scroll; height:10em">
+            <div  *ngFor="let mov of movimiento;" ></div>
        <ul class="list-group list-group-horizontal-sm text-primary">
-           <li class="list-group-item"> {{mov.fecha}}</li>
+           <li class="list-group-item"> {{mov.fecha| date:'MMMM - dd'}}</li>
            <li class="list-group-item"> {{mov.cantidad}}</li>
            <li class="list-group-item">   {{mov.desc}}</li>
        </ul>
     </div>
+   </div>
+   --> 
 
-   
-   
+
+<div class="container">
+    <div class="row">
+      <div class="col text-center">
+          <br>
+        <button (click)="regresar()" class="btn btn-secondary cencet   btn-lg " >Regresar</button>
+      </div>
+    </div>
+  </div>
