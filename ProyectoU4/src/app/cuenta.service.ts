@@ -9,7 +9,7 @@ const httpOptions = {
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 export class CuentaService {
 
@@ -36,7 +36,7 @@ export class CuentaService {
   //consulta movimientos de total
 
   public consultaMovimiento(id){
-    return this.http.get("http://167.71.202.42/api/cuentas/"+id+"/movimientos");
+    return this.http.get<res>("http://167.71.202.42/api/cuentas/"+id+"/movimientos");
   }
 
   //consulta todas las categorias por el id de la cuenta
@@ -82,4 +82,9 @@ export class CuentaService {
 /*  
     ////////////////////categoria
    */
+}
+
+interface res {
+  "msg" : String,
+  "movimientos" : []
 }

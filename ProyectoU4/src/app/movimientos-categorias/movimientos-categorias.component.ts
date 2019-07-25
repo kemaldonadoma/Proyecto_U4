@@ -8,57 +8,58 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-movimientos-categorias',
   templateUrl: './movimientos-categorias.component.html'
-//  styleUrls: ['./movimientos-categorias.component.css']
+  //  styleUrls: ['./movimientos-categorias.component.css']
 })
 export class MovimientosCategoriasComponent implements OnInit {
-  categorias:any = [];
+
+  categorias: any = [];
   categoria;
 
-  constructor(private cuentaservice: CuentaService, private activatedRoute: ActivatedRoute, private router:Router) {
+  constructor(private cuentaservice: CuentaService, private activatedRoute: ActivatedRoute, private router: Router) {
 
     this.activatedRoute.paramMap.subscribe(
-      (params)=>{
+      (params) => {
         this.cuentaservice
-        .consultaMovimiento(params.get('id'))
-        .subscribe((result)=>{
-          console.log(result);
-          console.log(params.get('id'));
-          this.categorias = [result];
-          console.log("Successful");
-          console.log(this.categorias);
-        },
-     (err)=>{ 
-       console.log(err); 
-       this.categorias = [];
+          .consultaMovimiento(params.get('id'))
+          .subscribe((result) => {
+            console.log(result);
+            console.log(params.get('id'));
+          this.categorias = result.movimientos;
+            console.log("Successful");
+            console.log(this.categorias);
+          },
+            (err) => {
+              console.log(err);
+              this.categorias = [];
+            });
+
       });
-
-    });
   }
 
-  refresh(){
+  refresh() {
     this.activatedRoute.params.subscribe(
-      (params)=>{
-        this.router.navigate(['/',params.id,'movimientos-categoria'])
+      (params) => {
+        this.router.navigate(['/', params.id, 'movimientos-categoria'])
       },
-      (e)=>{
+      (e) => {
 
       }
 
     )
   }
 
-  back(){
+  back() {
     this.activatedRoute.params.subscribe(
-      (params)=>{
-        this.router.navigate(['/',params.id])
+      (params) => {
+        this.router.navigate(['/', params.id])
       },
-      (e)=>{
+      (e) => {
 
       }
     )
   }
 
-  load(){
+  load() {
     location.reload();
   }
 
