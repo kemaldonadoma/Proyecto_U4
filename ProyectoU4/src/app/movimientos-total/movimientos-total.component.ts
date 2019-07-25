@@ -33,8 +33,9 @@ export class MovimientosTotalComponent implements OnInit {
           (mov_resultados)=>{
             console.log(mov_resultados);
             console.log(params.get('id'));
-            this.movimiento=[mov_resultados];
-            console.log("exito");
+           // this.movimiento=[mov_resultados];
+           this.asigMov(mov_resultados);
+           console.log("exito");
             console.log(this.movimiento);
           },
           (err)=>{
@@ -57,7 +58,7 @@ export class MovimientosTotalComponent implements OnInit {
   
 
    asigMov(mov){
-    this.movimiento = mov.movimientos.categorias[0].movimientos;
+    this.movimiento = mov.movimientos;
   }
   refresh(){
     this.activaroute.params.subscribe(
