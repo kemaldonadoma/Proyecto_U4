@@ -1,10 +1,10 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-10 offset-1 ">
+        <div class="col-10 offset-1  ">
 
             <!-- cabecera -->
-            <div class= "container text-white  bg-primary  py-3">
+            <div class= "container text-white  bg-dark   py-3">
                 <div class="row">
                     <h6 class="col-3 offset-1">Bienvenido</h6>
                     <h6 class="col-3 offset-1">{{nombre}}</h6>
@@ -16,25 +16,40 @@
             </div>
 
              <!-- Lista de categorias -->
-             <div class="container bg-warning text-white py-2">
-                <h6>CATEGORIAS</h6> 
-                <div class="list-group" style="overflow-y:scroll; height:25em">
-                     <div  *ngFor="let mov of movimiento;" >
-                        <ul class="list-group list-group-horizontal-sm text-primary">
-                            <li class="list-group-item"> {{mov.fecha | date:'MMMM - dd' }}</li>
-                            <li class="list-group-item"> {{mov.cantidad| currency}}</li>
-                            <li class="list-group-item">   {{mov.desc}}</li>
-                        </ul>
-                     </div>
+             <div class="row m-1 container text-white  bg-white  py-2 "  aling = "center"  >
+                   
+                            <div class="col container bg-white text-black-50 py-4" aling = "center">
+                                  
+                          
+                <h4 aling="center">CATEGORIAS</h4> 
+                <div class="list-group" style="overflow-y:scroll; height:15em">
+                    
+                     <table class="table ">
+                            <thead class="thead-white">
+                                <tr class="table-primary">
+                                <th>Fecha</th>
+                                <th>Cantidad</th>
+                                <th>Descripcion </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr  *ngFor="let mov of movimiento;" >
+                                <td>  {{mov.fecha | date:'MMMM - dd'}} </td>
+                                <td>  {{mov.cantidad | currency}}  </td>
+                                <td>   {{mov.desc}} </td>
+                              </tr>
+                          </tbody>
+                      </table>
                  </div>
+                 
          </div>
-
+      
            
 
             <!-- componente de agregar categoria -->
             <div class="container  text-white  bg-primary ">
                 <form
-                form  class="col-6 offset-3"
+                  class="col-12 "
             #frmCategoria="ngForm" 
             [formGroup]="formCategoria"
             (ngSubmit)="guardarMovimiento(frmCategoria.value)"
@@ -45,7 +60,7 @@
                                         <input name="monto" #monto type="number" class="form-control" formControlName="monto" placeholder="Monto">
 
                                       <!--   //input name="password" #password type="password" class="form-control" placeholder="Password" formControlName="password" -->
-                                        <small id="emailHelp" class="form-text text-muted">Revisa bien la cantidad que sumaras o restaras</small>
+                                        <small id="emailHelp" >Revisa bien la cantidad que sumaras o restaras</small>
                                 </div>
                                
                                 <div class="form-check form-check-inline col-2 offset-1">
@@ -67,7 +82,7 @@
                                   </div>
                     </div>
                     <div class="row">
-                            <button type="submit"  class="btn btn-warning btn-block col-6 offset-3" >Registrar</button>
+                            <button type="submit"  class="btn btn-success btn-block col-6 offset-3" >Registrar</button>
                             <button (click)="regresar()" class="btn btn-secondary btn-block col-6 offset-3" >Regresar</button>
                     </div>
                     

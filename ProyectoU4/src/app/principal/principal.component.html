@@ -4,9 +4,10 @@
         <div class="col-10 offset-1 ">
 
             <!-- cabecera -->
-            <div class= "container text-white  bg-primary  py-3">
+            <div class= "container text-white  bg-dark   py-3">
                 <div class="row">
-                    <h6 class="col-4 offset-1">Bienvenido {{usuario}}</h6>
+                    <h3 class="col-8 offset-1" >Bienvenido</h3>
+                    <h6 class="col-4 offset-1">Usuario:  {{usuario}}</h6>
                 </div>
                 <div class="row">
                     <h6 class="col-4 offset-1">Tu saldo es: {{total|currency}}</h6>
@@ -14,9 +15,13 @@
             </div>
 
             <!-- Lista de categorias -->
-            <div class="container bg-warning text-white py-2">
+                   
+                      <div class="row m-1 container text-white  bg-white  py-2 "  aling = "center"  >
+                   
+                            <div class="col container bg-white text-black-50 py-4" aling = "center">
+                          
                    <h6>CATEGORIAS</h6> 
-                   <div class="list-group" style="overflow-y:scroll; height:25em">
+                   <div class="list-group" style="overflow-y:scroll; height:14em">
                         <div  *ngFor="let cat of cuenta;" >
                             <a [routerLink]="['categoria',cat.nombre]" class="list-group-item list-group-item-action ">
                             {{cat.nombre}}
@@ -28,13 +33,13 @@
            
 
             <!-- componente de agregar categoria -->
-            <div class="container  text-white  bg-primary py-3 ">
+            <div class="container  text-white  bg-primary ">
                 <div class="row">
-                    <div class="col-10 offset-1">
+                    <div class="col-6 offset-3">
                         <button [routerLink]="['crear']" class="btn btn-warning btn-block">Crear Nueva Categoria</button>
                     </div>
                 </div>
-                <form  form  class=""
+                <form    class=" col -18 "
                 #frmTotal="ngForm" 
                 [formGroup]="formTotal"
                 (ngSubmit)="guardarMovimiento(frmTotal.value)">
@@ -58,13 +63,13 @@
                                 
                     </div>
                     <div class="row">
-                            <div class="form-group col-10 offset-1">
+                            <div class="form-group col-14 offset-1">
                                     <label for="exampleFormControlTextarea1">Descripcion del monto a agregar o restar</label>
                                     <textarea #description formControlName="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                   </div>
                     </div>
                     <div class="row">
-                            <button type="submit"  class="btn btn-warning btn-block col-6 offset-3" >Registrar</button>
+                            <button type="submit"  class="btn btn-success btn-block col-6 offset-3" >Registrar</button>
                             <button [routerLink]="['']" class="btn btn-secondary btn-block col-6 offset-3" >Salir</button>
                            
                     </div>
