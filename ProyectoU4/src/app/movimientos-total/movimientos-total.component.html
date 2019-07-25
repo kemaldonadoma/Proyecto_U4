@@ -1,11 +1,18 @@
 
 <h1 class="display-1 text-center"> Movimientos total</h1>
-
-<div class="row m-5"  aling = "center"  >
-    <div class="col" aling = "center">
+          <!-- cabecera -->
+          <div class= "container text-white  bg-primary  py-3 ">
+                <div class="row">
+                    <h6 class="col-4 offset-1">Bienvenido {{usuario}}</h6>
+                </div>
+                <div class="row">
+                    <h6 class="col-4 offset-1">Tu saldo es: {{total|currency}}</h6>
+                
+<div class="row m-5 container text-white  bg-primary  py-3 "  aling = "center"  >
+    <div class="col container bg-warning text-white py-2" aling = "center">
           
         <table class="table ">
-            <thead class="thead-inverse">
+            <thead class="thead-light">
             
                 <tr class="table-primary">
                 <th>Fecha</th>
@@ -22,7 +29,12 @@
 </tbody>
 
 
-        </table>    
+        </table>  
+        
+    </div> 
+</div> 
+</div>
+</div>
         <!-- 
         <div class="list-group" style="overflow-y:scroll; height:10em">
             <div  *ngFor="let mov of movimiento;" ></div>
@@ -34,7 +46,13 @@
     </div>
    </div>
    --> 
-   <div class="row" >
-    
-    <button (click)="regresar()" class="btn btn-secondary btn-block  " >Regresar</button>
-</div>
+
+
+<div class="container">
+    <div class="row">
+      <div class="col text-center">
+          <br>
+        <button (click)="regresar()" class="btn btn-secondary cencet   btn-lg " >Regresar</button>
+      </div>
+    </div>
+  </div>
