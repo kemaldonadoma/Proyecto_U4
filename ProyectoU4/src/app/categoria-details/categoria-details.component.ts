@@ -70,7 +70,7 @@ export class CategoriaDetailsComponent implements OnInit {
           )
     
         }else{
-          this.cuentaService.restarACategoria(movimientoToSave.description,params.id,params.nom,movimientoToSave.monto).subscribe(
+          this.cuentaService.restarACategoria({desc:movimientoToSave.description},params.id,params.nom,movimientoToSave.monto).subscribe(
             (a) =>{
               console.log("se resto correctamente");
               this.load();
