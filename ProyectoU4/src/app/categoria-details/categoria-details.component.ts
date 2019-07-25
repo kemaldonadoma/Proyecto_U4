@@ -13,8 +13,34 @@ export class CategoriaDetailsComponent implements OnInit {
 
   formCategoria;
   public tip = 1;
+  movimiento;
 
   constructor(private formBuilder: FormBuilder, private router:Router, private cuentaService: CuentaService, private activaroute: ActivatedRoute) {
+
+    this.activaroute.paramMap.subscribe(
+      (params)=>{
+        this.cuentaService.consultaMovCat(params.get('id'),params.get('nom')).subscribe(
+          (mov_resultados)=>{
+            console.log(mov_resultados);
+            console.log(params.get('id'),params.get('nom'));
+            this.asigMov(mov_resultados);
+            console.log("exito");
+            console.log(this.movimiento);
+          },
+          (err)=>{
+            console.log(err);
+            this.movimiento =err;
+          }
+        )
+      },
+      ()=>{
+
+      }
+
+    );
+
+
+
 
     this.createForm();
    }
@@ -36,6 +62,7 @@ export class CategoriaDetailsComponent implements OnInit {
           this.cuentaService.agregarACategoria({desc:movimientoToSave.description},params.id,params.nom,movimientoToSave.monto).subscribe(
             (a) =>{
               console.log("se agrego correctamente");
+              this.load();
             },
             (b) => {
               console.log("algo salio mal");
@@ -46,6 +73,7 @@ export class CategoriaDetailsComponent implements OnInit {
           this.cuentaService.restarACategoria(movimientoToSave.description,params.id,params.nom,movimientoToSave.monto).subscribe(
             (a) =>{
               console.log("se resto correctamente");
+              this.load();
             },
             (b) => {
               console.log("algo salio mal");
@@ -59,28 +87,41 @@ export class CategoriaDetailsComponent implements OnInit {
       }
 
     )
-  /* this.cuentaService.agregarACategoria(usuarioToSave)
-    .subscribe(
-      (usr)=> {
-      
-        console.log(usr);
-        this.iniciaCuenta(usuarioToSave.total, usr);
-        console.log(usuarioToSave.total);
-        
-        this.router.navigate(['']);
-
-
-      },
-
-      (err)=>{
-        console.log(err);
-      }
-    );  */
   }
 
   tipo(num){
     this.tip = num;
     console.log(this.tip);
+  }
+  refresh(){
+    this.activaroute.params.subscribe(
+      (params)=>{
+        this.router.navigate(['/',params.id,'categoria',params.nom])
+      },
+      (e)=>{
+
+      }
+
+    )
+  }
+
+  regresar(){
+    this.activaroute.params.subscribe(
+      (params)=>{
+        this.router.navigate(['/',params.id])
+      },
+      (e)=>{
+
+      }
+
+    )
+  }
+
+  load(){
+    location.reload();
+  }
+  asigMov(mov){
+    this.movimiento = mov.movimientos.categorias[0].movimientos;
   }
 
   ngOnInit() {
