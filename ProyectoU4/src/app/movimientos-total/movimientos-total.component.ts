@@ -19,11 +19,13 @@ export class MovimientosTotalComponent implements OnInit {
 
 
   formCategoria;
-  public tip = 1;
-  movimiento;
+
+  movimiento = [];
 
 
-  constructor( private router:Router, private cuentaService: CuentaService, private activaroute: ActivatedRoute) {
+  constructor( private router:Router, 
+    private cuentaService: CuentaService, 
+    private activaroute: ActivatedRoute) {
 
     this.activaroute.paramMap.subscribe(
       (params)=>{
@@ -31,7 +33,7 @@ export class MovimientosTotalComponent implements OnInit {
           (mov_resultados)=>{
             console.log(mov_resultados);
             console.log(params.get('id'));
-           
+            this.movimiento=[mov_resultados];
             console.log("exito");
             console.log(this.movimiento);
           },
@@ -54,7 +56,9 @@ export class MovimientosTotalComponent implements OnInit {
 
   
 
-
+   asigMov(mov){
+    this.movimiento = mov.movimientos.categorias[0].movimientos;
+  }
   refresh(){
     this.activaroute.params.subscribe(
       (params)=>{
@@ -82,9 +86,7 @@ export class MovimientosTotalComponent implements OnInit {
   load(){
     location.reload();
   }
-  asigMov(mov){
-    this.movimiento = mov.movimientos.categorias[0].movimientos;
-  }
+
    ngOnInit() {
   }
 }
