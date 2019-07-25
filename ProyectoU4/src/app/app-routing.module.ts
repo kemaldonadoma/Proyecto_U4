@@ -9,13 +9,13 @@ import { CategoriaDetailsComponent } from './categoria-details/categoria-details
 import { CategoriaCrearComponent } from './categoria-crear/categoria-crear.component';
 const routes: Routes = [
 //
-{path:'login', component:LoginComponent},
+{path:'', component:LoginComponent},
 {path:'crear-usuario', component:CrearUsuarioComponent},
 {path:':id', component:PrincipalComponent},
 {path:':id/movimientos-total', component:MovimientosTotalComponent},
-{path:':id/movimientos-categoria/:nom', component:MovimientosCategoriasComponent},
+{path:':id/movimientos-categoria', component:MovimientosCategoriasComponent},
 {path:':id/crear', component:CategoriaCrearComponent},
-{path:':id/:categoria/:nom', component:CategoriaDetailsComponent},
+{path:':id/categoria/:nom', component:CategoriaDetailsComponent},
 
 ];
 

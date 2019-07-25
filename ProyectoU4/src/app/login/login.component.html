@@ -1,1 +1,40 @@
-<p>login works!</p>
+
+<div class="container">
+    <div class="row">   
+         
+        <div class="col-6 offset-3 ">
+
+                <div class="card p-top-3" >
+                        
+                        <div class="card-body">
+
+                                <form  #frmLogin="ngForm" 
+                                [formGroup] ="formLogin"
+                                (ngSubmit)="login(frmLogin.value)">
+                                       
+                                <div class="form-group">
+                                          <label for="email">Correo Electronico</label>
+                                          <input type="email" class="form-control" #email formControlName="email" aria-describedby="emailHelp" placeholder="Ingresar Correo">
+                                          
+                                        </div>
+
+                                <div class="form-group">
+                                          <label for="password">Constraseña</label>
+                                          <input type="password" class="form-control" #password formControlName="password" placeholder="Constraseña">
+                                          <small id="emailHelp" class="form-text text-muted">Favor de no compartir tu contraseña.</small>
+                                        </div>
+                                       
+                                        <button type="submit"  class="btn btn-primary btn-block" >Iniciar Sesion</button>
+                                    
+                                    </form>
+                                      
+                            <hr>
+                            <button [routerLink]="['/crear-usuario']" type="button" class="btn btn-secondary btn-block">Registrar Cuenta Nueva</button>
+                        </div>
+                </div> 
+        </div>
+    </div>
+
+    
+
+  </div>

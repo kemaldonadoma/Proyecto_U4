@@ -1,1 +1,74 @@
-<p>principal works!</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-10 offset-1 ">
+
+            <!-- cabecera -->
+            <div class= "container text-white  bg-primary  py-3">
+                <div class="row">
+                    <h6 class="col-4 offset-1">Bienvenido</h6>
+                </div>
+                <div class="row">
+                    <h6 class="col-4 offset-1">Tu saldo es:</h6>
+                </div>
+            </div>
+
+            <!-- Lista de categorias -->
+            <div class="container bg-warning text-white py-2">
+                   <h6>CATEGORIAS</h6> 
+                   <div class="list-group" style="overflow-y:scroll; height:25em">
+                        <div  *ngFor="let cat of cuenta;" >
+                            <a [routerLink]="['categoria',cat.nombre]" class="list-group-item list-group-item-action ">
+                            {{cat.nombre}}
+                            </a>
+                        </div>
+                    </div>
+            </div>
+
+           
+
+            <!-- componente de agregar categoria -->
+            <div class="container  text-white  bg-primary py-3 ">
+                <div class="row">
+                    <div class="col-10 offset-1">
+                        <button [routerLink]="['crear']" class="btn btn-warning btn-block">Crear Nueva Categoria</button>
+                    </div>
+                </div>
+                <form>
+                        <div class="row">
+                                <div class="form-group col-5 offset-1">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                </div>
+
+                                <div class="form-check form-check-inline col-2 offset-1">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                                        <label class="form-check-label" for="inlineRadio1">Agregar</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline  col-2">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                        <label class="form-check-label" for="inlineRadio2">Restar</label>
+                                </div>
+                                
+                    </div>
+                    <div class="row">
+                            <div class="form-group col-10 offset-1">
+                                    <label for="exampleFormControlTextarea1">Example textarea</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                  </div>
+                    </div>
+                    <div class="row">
+                            <button type="submit"  class="btn btn-warning btn-block col-6 offset-3" >Registrar</button>
+                            <button [routerLink]="['']" class="btn btn-secondary btn-block col-6 offset-3" >Salir</button>
+                    </div>
+                    
+                    <br>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
