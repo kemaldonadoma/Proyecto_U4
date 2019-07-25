@@ -93,17 +93,6 @@ export class CategoriaDetailsComponent implements OnInit {
     this.tip = num;
     console.log(this.tip);
   }
-  refresh(){
-    this.activaroute.params.subscribe(
-      (params)=>{
-        this.router.navigate(['/',params.id,'categoria',params.nom])
-      },
-      (e)=>{
-
-      }
-
-    )
-  }
 
   regresar(){
     this.activaroute.params.subscribe(
@@ -122,6 +111,10 @@ export class CategoriaDetailsComponent implements OnInit {
   }
   asigMov(mov){
     this.movimiento = mov.movimientos.categorias[0].movimientos;
+  }
+  eliminar(id,nom){
+    /* this.cuentaService.eliminarCategoria() */
+
   }
 
   ngOnInit() {
