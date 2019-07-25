@@ -11,14 +11,33 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class PrincipalComponent implements OnInit {
   cuenta;
-
+  total;
+  usuario;
   formTotal;
   public tip = 1;
 
   constructor( private apiCuenta:CuentaService,private router: ActivatedRoute,private apiUser:UsuarioService,private formBuilder:FormBuilder) {
    
     this.createForm();
+    //obtener nombre de usuario
+    this.router.paramMap.subscribe(
+      (params)=>{
+        this.apiUser.findById(params.get('id')).subscribe(
+          (cat_result)=>{
+            this.asigNom(cat_result);
+          },
+          (err)=>{
+            console.log(err);
+            this.cuenta = err;
+          }
+        );
+        
+      },
+      ()=>{}
+    );
 
+
+    //obtener categorias
     this.router.paramMap.subscribe(
       (params)=>{
         this.apiCuenta.consultaCategorias(params.get('id')).subscribe(
@@ -40,7 +59,13 @@ export class PrincipalComponent implements OnInit {
    }
 
   asigCat(cat){
+    console.log(cat);
     this.cuenta = cat.data[0].categorias;
+    this.total = cat.data[0].total;
+    
+  }
+  asigNom(us){
+    this.usuario = us.data.nombre;
   }
 
   ngOnInit() {
