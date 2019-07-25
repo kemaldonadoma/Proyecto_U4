@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CuentaService } from "../cuenta.service";
 import { FormGroup, FormControl, FormBuilder, Validators,FormsModule } from '@angular/forms';
-import {ActivatedRoute} from "@angular/router";
 
+import {Router , ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'app-categoria-crear',
   templateUrl: './categoria-crear.component.html'//,
@@ -14,7 +14,7 @@ export class CategoriaCrearComponent implements OnInit {
   public id:string;
   formCategoria;
 
-  constructor(private apicuenta:CuentaService, private formBuilder:FormBuilder,private activatedRoute: ActivatedRoute) {
+  constructor(private apicuenta:CuentaService, private formBuilder:FormBuilder,private activatedRoute: ActivatedRoute, private router:Router) {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
    }
 
@@ -46,6 +46,18 @@ export class CategoriaCrearComponent implements OnInit {
         this.createForm();
   }
 
+  regresar(){
+    this.activatedRoute.params.subscribe(
+      (params)=>{
+        this.router.navigate(['/',params.id])
+      },
+      (e)=>{
+
+      }
+
+    )
+  }
+
   crearCategoria(objeto) {
     console.log(objeto);
     var {nomcat,monto}=objeto;
@@ -57,7 +69,9 @@ export class CategoriaCrearComponent implements OnInit {
         this.apicuenta.consultaCategorias(id).subscribe(
           (cat_result)=>{
             this.categorias = cat_result;
+            
             console.log(this.categorias);
+            this.regresar();
           },
           (err)=>{
             console.log(err);
