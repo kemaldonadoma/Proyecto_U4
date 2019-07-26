@@ -1,24 +1,40 @@
 <p>Movimientos de todas las categorias</p>
-
 <table class = "table" table-striped>
     <thead>
-        <th scope = "col">Categoria</th>
-        <th scope = "col">Fecha</th>
-        <th scope = "col">Cantidad</th>
-        <th scope = "col">Descripcion</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Descripcion</th>
     </thead>
+    <!-- <tbody>
+        <p> DATA: {{categorias.data.categorias[0].movimientos[0].fecha
+               }}</p>
+
+        <tr *ngFor="let item of categorias.data.categorias">
+            <td *ngFor="let col of item.movimientos">
+                    
+                    {{col.cantidad}}
+                  </td> 
+        </tr>
+    </tbody>-->
     <tbody>
-        <tr *ngFor = "let item of categorias">
-            <td >{{item.categoria}}</td>
-            <td>{{item.fecha}}</td>
-            <td>{{item.cantidad}}</td>
-            <td>{{item.descripcion}}</td>
+        <tr *ngFor="let mov of categorias.data.categorias[0].movimientos">
+            <td> Categoria 0 </td>
+            <td> {{mov.fecha | date:'MMMM - dd'}} </td>
+            <td> {{mov.cantidad | currency}} </td>
+            <td> {{mov.desc}} </td>
+        </tr>
+        <tr *ngFor="let mov of categorias.data.categorias[1].movimientos">
+            <td> Categoria 1 </td>
+            <td> {{mov.fecha | date:'MMMM - dd'}} </td>
+            <td> {{mov.cantidad | currency}} </td>
+            <td> {{mov.desc}} </td>
         </tr>
     </tbody>
     <br>
     <div class="form-footer">
-       <button (click)="back()" class="btn btn-info btn-block" >
-        Back
-       </button>
+        <button (click)="back()" class="btn btn-info btn-block">
+            Back
+        </button>
     </div>
 </table>
