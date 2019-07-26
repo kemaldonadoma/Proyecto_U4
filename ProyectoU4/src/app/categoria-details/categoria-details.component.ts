@@ -27,8 +27,8 @@ export class CategoriaDetailsComponent implements OnInit {
       (params)=>{
         this.cuentaService.consultaMovCat(params.get('id'),params.get('nom')).subscribe(
           (mov_resultados)=>{
-            this.saldo = mov_resultados.movimientos.categorias[0].saldo;
-            this.nombreCat = mov_resultados.movimientos.categorias[0].nombre;
+         this.saldo = mov_resultados.movimientos.categorias[0].saldo;
+          this.nombreCat = mov_resultados.movimientos.categorias[0].nombre;
             console.log(this.saldo);
             console.log(mov_resultados);
             console.log(params.get('id'),params.get('nom'));
@@ -51,7 +51,7 @@ export class CategoriaDetailsComponent implements OnInit {
       (params)=>{
         this.usuarioService.findById(params.get('id')).subscribe(
           (usr_resultados)=>{
-            this.nombre = usr_resultados.data.nombre;
+         this.nombre = usr_resultados.data.nombre;
           },
           (err)=>{
             console.log(err);

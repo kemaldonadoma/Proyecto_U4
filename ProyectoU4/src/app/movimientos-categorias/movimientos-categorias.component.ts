@@ -15,8 +15,33 @@ export class MovimientosCategoriasComponent implements OnInit {
   formTotal;
   public tip = 1;
 
-  constructor(  private activaroute: ActivatedRoute, private apiCuenta:CuentaService,private router:Router,private apiUser:UsuarioService,private formBuilder:FormBuilder) {
-   
+  constructor( private activaroute: ActivatedRoute, private apiCuenta:CuentaService,private router:Router,private apiUser:UsuarioService,private formBuilder:FormBuilder) {
+    this.activaroute.paramMap.subscribe(
+      (params) => {
+        this.apiCuenta
+          .todosMovimientos(params.get('id'))
+          .subscribe((result) => {
+            let res = result;
+            setTimeout(()=>{
+                this.categorias = res as any; 
+                console.log(); 
+
+            },
+            1000
+            );
+            
+
+           // this.categorias = result;
+          //  alert('msg' + res);
+            console.log(this.categorias);
+          },
+            (err) => {
+              console.log(err);
+             // this.categorias = [];
+            });
+
+      });
+  
     this.createForm();
     //obtener nombre de usuario
     this.activaroute.paramMap.subscribe(
@@ -134,6 +159,4 @@ createForm(){
     this.tip = num;
     console.log(this.tip);
   }
-
-  
 }
