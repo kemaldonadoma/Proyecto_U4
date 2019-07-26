@@ -1,9 +1,7 @@
 <div class="card text-white bg-dark mb-3" style="max-width: 90rem;" >
-<<<<<<< HEAD
+
     <h1 class="display-1 text-center"> Movimientos Categoria</h1>
-=======
-    <h1 class="display-1 text-center"> Movimientos Categorias</h1>
->>>>>>> 4ce275210cd858ec489eaf3128c8f13c7c9b601f
+
               <!-- cabecera -->
               <div class= "container text-white bg  py-9 ">
                     <div class="row">
@@ -13,13 +11,12 @@
                         <h6 class="col-4 offset-1">Tu saldo es: {{total|currency}} </h6>
                     
                     
-    <div class="row m-1 container text-white  bg-white  py-2 "  aling = "center"  >
-        <div class="col container bg-white text-white py-4" aling = "center">
-              
-       <table class="table ">
+    <div class=" container text-white  bg-white  py-2 "  >
+          <div class="row">    
+       <table class="table">
           <thead class="thead-dark">
           
-              <tr class="table-primary">
+              <tr >
                     <th scope = "col">Categoria</th>
                     <th scope = "col">Fecha</th>
                     <th scope = "col">Saldo</th>
@@ -28,18 +25,22 @@
             </tr>
           </thead>
           <tbody>
-            
-           <tr *ngFor = "let item of categorias.data">
-                    <td >{{item.nombre}}</td>
-                    <td >{{item.fecha}}</td>
-                    <td >{{item.saldo}}</td>
-                    <td>{{item.desc}}</td>
-            </tr>
-    </tbody>
+        </tbody>
     
     
       </table> 
-      </div>
+           
+      <div class="container text-dark" *ngFor = "let mov of movimientos ; let i=index">
+          <div class="row" *ngFor = "let dat of mov.movimientos" >
+                 <p class="col-3 strong">{{categorias[i].nombre}}</p>
+                 <p class="col-3" >{{dat.fecha|date}}</p>
+                 <p class="col-3">{{dat.cantidad|currency}}</p>
+                 <p class="col-3">{{dat.desc}}</p>
+             
+             </div>
+           </div> 
+    </div>
+      
       </div>
    
        

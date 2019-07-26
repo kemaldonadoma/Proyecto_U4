@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
 import { UsuarioService } from "../usuario.service";
 import { CuentaService } from "../cuenta.service";
 import {FormGroup,FormControl,FormBuilder,Validators} from "@angular/forms";
@@ -10,30 +10,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class MovimientosCategoriasComponent implements OnInit {
   categorias;
+  movimientos;
   total;
   usuario;
   formTotal;
   public tip = 1;
 
   constructor( private activaroute: ActivatedRoute, private apiCuenta:CuentaService,private router:Router,private apiUser:UsuarioService,private formBuilder:FormBuilder) {
+
     this.activaroute.paramMap.subscribe(
       (params) => {
+
         this.apiCuenta
           .todosMovimientos(params.get('id'))
           .subscribe((result) => {
-            let res = result;
-            setTimeout(()=>{
-                this.categorias = res as any; 
-                console.log(); 
-
-            },
-            1000
-            );
             
-
-           // this.categorias = result;
-          //  alert('msg' + res);
-            console.log(this.categorias);
+           
+            this.movimientos = result.data.categorias;
+            console.log("prueba de movimientos");
+            console.log(this.movimientos);
           },
             (err) => {
               console.log(err);
@@ -43,6 +38,7 @@ export class MovimientosCategoriasComponent implements OnInit {
       });
   
     this.createForm();
+
     //obtener nombre de usuario
     this.activaroute.paramMap.subscribe(
       (params)=>{
@@ -68,7 +64,7 @@ export class MovimientosCategoriasComponent implements OnInit {
           (cat_result)=>{
             
             this.asigCat(cat_result);
-            console.log("Test de categorias sobre id");
+           console.log("Test de categorias sobre id");
             console.log(this.categorias);
           },
           (err)=>{
@@ -80,14 +76,16 @@ export class MovimientosCategoriasComponent implements OnInit {
       },
       ()=>{}
     );
+
    }
 
   asigCat(cat){
     console.log(cat);
-    this.categorias = cat.data[0].categorias;
+   this.categorias = cat.data[0].categorias;
     this.total = cat.data[0].total;
     
   }
+
   asigNom(us){
     this.usuario = us.data.nombre;
   }
