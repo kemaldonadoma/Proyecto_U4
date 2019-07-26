@@ -1,57 +1,48 @@
-
 <div class="card text-white bg-dark mb-3" style="max-width: 90rem;" >
-        <h1 class="display-1 text-center"> Movimientos Categoria</h1>
-                  <!-- cabecera -->
-                  <div class= "container text-white bg  py-9 ">
-                        <div class="row">
-                            <h6 class="col-4 offset-1">Bienvenido {{usuario}}</h6>
-                        </div>
-                        <div class="row">
-                            <h6 class="col-4 offset-1">Tu saldo es: {{total|currency}} </h6>
-                        
-                        
-        <div class="row m-1 container text-white  bg-white  py-2 "  aling = "center"  >
-            <div class="col container bg-white text-white py-4" aling = "center">
-                  
-           <table class="table ">
-              <thead class="thead-dark">
+    <h1 class="display-1 text-center"> Movimientos total</h1>
+              <!-- cabecera -->
+              <div class= "container text-white bg  py-9 ">
+                    <div class="row">
+                        <h6 class="col-4 offset-1">Bienvenido {{usuario}}</h6>
+                    </div>
+                    <div class="row">
+                        <h6 class="col-4 offset-1">Tu saldo es: {{total|currency}} </h6>
+                    
+                    
+    <div class="row m-1 container text-white  bg-white  py-2 "  aling = "center"  >
+        <div class="col container bg-white text-white py-4" aling = "center">
               
-                  <tr class="table-primary">
-                        <th scope = "col">Categoria</th>
-                        <th scope = "col">Fecha</th>
-                        <th scope = "col">Cantidad</th>
-                        <th scope = "col">Descripcion</th>
-                </tr>
-              </thead>
-              <tbody>
-                
-               <tr *ngFor = "let item of categorias">
-                        <td >{{item.categoria}}</td>
-                        <td>{{item.fecha}}</td>
-                        <td>{{item.cantidad}}</td>
-                        <td>{{item.desc}}</td>
-                </tr>
-        </tbody>
-        
-        
-          </table> 
-          </div>
-          </div>
-          </div>
-           
-        <div class="container">
-            <div class="row">
-              <div class="col text-center">
-                  <br>
-               
-                <button (click)="back()" class="btn btn-info btn-block" >
-                        Regrsar 
-                       </button>
-                    <br>
-              </div>
-            </div>
-          </div>
-        
-        
+       <table class="table ">
+          <thead class="thead-dark">
           
-
+              <tr class="table-primary">
+                    <th scope = "col">Categoria</th>
+                    <th scope = "col">Saldo</th>
+                  
+            </tr>
+          </thead>
+          <tbody>
+            
+           <tr *ngFor = "let item of categorias">
+                    <td >{{item.nombre}}</td>
+                    <td >{{item.saldo}}</td>
+            </tr>
+    </tbody>
+    
+    
+      </table> 
+      </div>
+      </div>
+   
+       
+      <div class="container">
+          <div class="row">
+            <div class="col text-center">
+                <br>
+              <button (click)="regresar()" class="btn btn-secondary cencet   btn-block " >Regresar</button>
+              <br>
+            </div>
+            
+          </div>
+          
+        </div>
