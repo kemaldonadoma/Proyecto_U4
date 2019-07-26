@@ -4,7 +4,7 @@
         <div class="col-10 offset-1  ">
 
             <!-- cabecera -->
-            <div class= "container text-white  bg-dark   py-3">
+            <div class= "container text-white  bg-dark  py-3">
                 <div class="row">
                     <h6 class="col-3 offset-1">Bienvenido</h6>
                     <h6 class="col-3 offset-1">{{nombre}}</h6>
@@ -49,7 +49,7 @@
             <!-- componente de agregar categoria -->
             <div class="container  text-white  bg-primary ">
                 <form
-                  class="col-12 "
+                form  class="col-12 "
             #frmCategoria="ngForm" 
             [formGroup]="formCategoria"
             (ngSubmit)="guardarMovimiento(frmCategoria.value)"

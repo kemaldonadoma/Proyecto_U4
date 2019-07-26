@@ -1,16 +1,23 @@
-<div class="container">
-        <div class="crearcat-form-container">
-           <form class= "col-4 offset-3"
+<hr>
+<br>
+<div class="card border-dark text-light bg-dark mb-3" style="max-width: 50;max-height: 90rem">
+
+      <div class="card-header">
+            <h3 class="form-title"> Crear categoría</h3>
+            <div class="pull-right">
+               <h3 class="form-title"><span class="glyphicon glyphicon-pencil"></span></h3>
+            </div>
+         </div>
+
+         <div class="card border-light  bg-light mb-3" style="max-width: 50rem ; max-height: 90rem">
+               
+         <div class="crearcat-form-container">
+           <form class= "col-10 offset-1"
            #frmCrearCat="ngForm"
            [formGroup]="formCategoria"
            (ngSubmit)="crearCategoria(frmCrearCat.value)">
-           <div class="form-header">
-              <h3 class="form-title"><i class="fa fa-crear"></i> Crear categoría</h3>
-              <div class="pull-right">
-                 <h3 class="form-title"><span class="glyphicon glyphicon-pencil"></span></h3>
-              </div>
-           </div>
-
+         
+        
 
 
            <div class="form-body">
@@ -19,6 +26,7 @@
                     <div class="input-group-addon">
                        <span class="glyphicon glyphicon-user"></span>
                     </div>
+                    <br>
                     <input type="text" placeholder="Nombre de la categoria" #nomcat class="form-control" formControlName="nomcat">
                  </div>
               </div>
@@ -38,11 +46,15 @@
          
            </form>
         </div>
-        <div class="form-footer">
-            <button class="btn btn-secondary btn-block" type="submit"><span class="glyphicon glyphicon-log-in"></span>
-            Crear
-            </button>
-
-            <button (click)="regresar()" class="btn btn-info" > Regresar</button>
-         </div>
+     
      </div>
+     <div class="form-footer">
+         <button class="btn btn-secondary btn-block" type="submit"><span class="glyphicon glyphicon-log-in"></span>
+         Crear
+         </button>
+         <br>
+         <button (click)="regresar()" class="btn btn-info btn-block" > Regresar</button>
+         <br>
+      </div>
+      <hr>
+   </div>

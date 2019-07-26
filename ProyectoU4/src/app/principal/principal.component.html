@@ -5,16 +5,16 @@
 
             <!-- cabecera -->
 
-            <div class= "container text-white  bg-dark   py-3">
+            <div class= "container text-white  bg-dark   py-6">
                 <div class="row">
                     <h3 class="col-8 offset-1" >Bienvenido</h3>
                     <h6 class="col-4 offset-1">Usuario:  {{usuario}}</h6>
 
-                    <button [routerLink]="['movimientos-total']" type="button" class="col-3 offset-3 btn btn-warning py-2">Movimientos Total</button>
+                    <button [routerLink]="['movimientos-total']" type="button" class="col-4 offset-3 btn btn-warning ">Movimientos Total</button>
                 </div>
                 <div class="row">
-                    <h6 class="col-4 offset-1">Tu saldo es: {{total|currency}}</h6>
-                    <button [routerLink]="['movimientos-categoria']" type="button" class="col-3 offset-3 btn btn-warning">Movimientos categorias</button>
+                    <h6 class="col-6 offset-1">Tu saldo es: {{total|currency}}</h6>
+                    <button [routerLink]="['movimientos-categoria']" type="button" class="col-4 offset-8 btn btn-warning">Movimientos categorias</button>
                 </div>
             </div>
 
@@ -28,7 +28,7 @@
 
     
                    <h6>CATEGORIAS</h6> 
-                   <div class="list-group" style="overflow-y:scroll; height:14em">
+                   <div class="list-group" style="overflow-y:scroll; height:8em">
                         <div  *ngFor="let cat of cuenta;" >
                             <a [routerLink]="['categoria',cat.nombre]" class="list-group-item list-group-item-action ">
                             {{cat.nombre}}
@@ -43,36 +43,40 @@
             <!-- componente de agregar categoria -->
             <div class="container  text-white  bg-primary ">
                 <div class="row">
+                    
                     <div class="col-6 offset-3">
+                    <hr>
                         <button [routerLink]="['crear']" class="btn btn-warning btn-block">Crear Nueva Categoria</button>
                     </div>
                 </div>
-                <form    class=" col -18 "
+                <form class=" col-20  "
                 #frmTotal="ngForm" 
                 [formGroup]="formTotal"
                 (ngSubmit)="guardarMovimiento(frmTotal.value)">
 
                         <div class="row">
-                                <div class="form-group col-5 offset-1">
+                                <div class="form-group col-6 offset-3">
                                         <label for="exampleInputEmail1">Monto</label>
                                         <input type="number" class="form-control" #monto aria-describedby="emailHelp" formControlName="monto" placeholder="Monto">
                                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                 </div>
 
-                                <div class="form-check form-check-inline col-2 offset-1">
+                                <div class="form-check form-check-inline col-2 offset-4">
                                         <input (click)="tipo(1)" #agregar  formControlerName="agregar" class="form-check-input" type="radio" name="inlineRadioOptions" value="option1" checked>
                                         <label class="form-check-label" for="inlineRadio1">Agregar</label>
                                     </div>
 
-                                    <div class="form-check form-check-inline  col-2">
+                                    <div class="form-check form-check-inline  col-2 1">
                                         <input (click)="tipo(0)" #agregar formControlerName="agregar" class="form-check-input" type="radio" name="inlineRadioOptions" value="option2">
-                                        <label class="form-check-label" for="inlineRadio2">Restar</label>
-                                </div>
                                 
+                                        <label class="form-check-label" for="inlineRadio2">Restar</label>
+                                        <hr>
+                                    </div>
+                                  
                     </div>
                     <div class="row">
-                            <div class="form-group col-14 offset-1">
-                                    <label for="exampleFormControlTextarea1">Descripcion del monto a agregar o restar</label>
+                            <div class="form-group col-8 offset-2">
+                                    <label for="exampleFormControlTextarea1 py-3">Descripcion del monto a agregar o restar</label>
                                     <textarea #description formControlName="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                   </div>
                     </div>
