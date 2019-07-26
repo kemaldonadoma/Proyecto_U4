@@ -12,25 +12,37 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MovimientosCategoriasComponent implements OnInit {
 
-  categorias: any = [];
+  categorias: any;
   categoria;
+ // data0:any;
 
-  constructor(private cuentaservice: CuentaService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private cuentaservice: CuentaService, 
+    private activatedRoute: ActivatedRoute, 
+    private router: Router) {
 
+    //this.categorias = {};
     this.activatedRoute.paramMap.subscribe(
       (params) => {
         this.cuentaservice
-          .consultaMovimiento(params.get('id'))
+          .todosMovimientos(params.get('id'))
           .subscribe((result) => {
-            console.log(result);
-            console.log(params.get('id'));
-          this.categorias = result.movimientos;
-            console.log("Successful");
+            let res = result;
+            setTimeout(()=>{
+                this.categorias = res as any; 
+                console.log(); 
+
+            },
+            1000
+            );
+            
+
+           // this.categorias = result;
+          //  alert('msg' + res);
             console.log(this.categorias);
           },
             (err) => {
               console.log(err);
-              this.categorias = [];
+             // this.categorias = [];
             });
 
       });
