@@ -51,7 +51,7 @@ nombre;
       }
 
     );
-  /*  this.router.paramMap.subscribe(
+    this.activaroute.paramMap.subscribe(
       (params)=>{
         this.apiUser.findById(params.get('id')).subscribe(
           (cat_result)=>{
@@ -59,15 +59,13 @@ nombre;
           },
           (err)=>{
             console.log(err);
-            this.nombre = err;
+            this.movimiento = err;
           }
         );
         
       },
       ()=>{}
     );
-*/
-   
   
 
 
