@@ -1,6 +1,6 @@
 <div class="container">
         <div class="crearcat-form-container">
-           <form class= "col-6 offset-3"
+           <form class= "col-4 offset-3"
            #frmCrearCat="ngForm"
            [formGroup]="formCategoria"
            (ngSubmit)="crearCategoria(frmCrearCat.value)">
@@ -10,6 +10,9 @@
                  <h3 class="form-title"><span class="glyphicon glyphicon-pencil"></span></h3>
               </div>
            </div>
+
+
+
            <div class="form-body">
               <div class="form-group">
                  <div class="input-group">
@@ -28,17 +31,18 @@
                  </div>
               </div>
            </div>
-           <div class="form-footer">
-              <button class="btn btn-info" type="submit"><span class="glyphicon glyphicon-log-in"></span>
-              Crear
-              </button>
-           </div>
+
+
+           
            <br>
-           <div class="form-footer">
-              <button (click)="regresar()" class="btn btn-info" >
-              Regresar
-              </button>
-           </div>
+         
            </form>
         </div>
+        <div class="form-footer">
+            <button class="btn btn-secondary btn-block" type="submit"><span class="glyphicon glyphicon-log-in"></span>
+            Crear
+            </button>
+
+            <button (click)="regresar()" class="btn btn-info" > Regresar</button>
+         </div>
      </div>
